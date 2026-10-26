@@ -28,6 +28,7 @@ claude plugin install habilidades@lucas-sachet
 | [escrever-ideias](skills/escrever-ideias/SKILL.md), [escrever-roteiro](skills/escrever-roteiro/SKILL.md), [escrever-rascunho](skills/escrever-rascunho/SKILL.md) | Escrever um texto em três etapas | Pronta |
 | [planejar-semana](skills/planejar-semana/SKILL.md) | Escolher as prioridades da semana, distribuir nos dias e revisar na sexta | Pronta |
 | [escrever-procedimento](skills/escrever-procedimento/SKILL.md) | Documentar um processo (SOP/POP) para qualquer pessoa conseguir seguir | Pronta |
+| [responder-cliente](skills/responder-cliente/SKILL.md) | Escrever e-mails e mensagens para clientes no tom de voz da empresa, que melhora a cada uso | Pronta |
 | [primeiros-passos](skills/primeiros-passos/SKILL.md) | Guia para quem está começando: por onde começar e como pedir melhor | Pronta |
 | [braco-direito](skills/braco-direito/SKILL.md) | Perseguir uma meta longa coordenando vários agentes | Pronta |
 

@@ -1,5 +1,3 @@
 interface:
-  display_name: "Implement"
-  short_description: "Build work from a spec or tickets"
-policy:
-  allow_implicit_invocation: false
+  display_name: "Executar tarefas"
+  short_description: "Faça o trabalho de um plano, tarefa por tarefa"

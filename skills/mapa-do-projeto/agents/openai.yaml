@@ -1,5 +1,3 @@
 interface:
-  display_name: "Wayfinder"
-  short_description: "Map a large effort as decision tickets"
-policy:
-  allow_implicit_invocation: false
+  display_name: "Mapa do projeto"
+  short_description: "Mapeie um projeto grande em decisões, uma por vez"

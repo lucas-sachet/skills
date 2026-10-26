@@ -1,75 +1,67 @@
 ---
 name: montar-plano
-description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
+description: Transforma a conversa atual num plano escrito (objetivo, decisões, passos, riscos), sem entrevistar o usuário: só reúne o que já foi combinado.
 disable-model-invocation: true
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
+Esta skill pega o que já foi dito na conversa e produz um **plano** por escrito. NÃO entreviste o usuário: apenas sintetize o que você já sabe. Se faltar algo essencial, anote em "Perguntas em aberto" em vez de perguntar agora.
 
-The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+## Processo
 
-## Process
+1. **Reúna o contexto.** Releia a conversa e, se o usuário apontou arquivos (planilhas, contratos, propostas), leia-os. Use as palavras do próprio usuário para chamar as coisas (produtos, clientes, setores), sem inventar termos.
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
+2. **Escreva o plano** com o modelo abaixo e salve em `plano-<assunto>.md` na pasta atual.
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
+3. **Mostre e confirme.** Diga onde o arquivo ficou, resuma o plano em poucas linhas e pergunte se algo importante ficou de fora ou foi entendido errado.
 
-Check with the user that these seams match their expectations.
+<modelo-de-plano>
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+# Plano: <nome do projeto>
 
-<spec-template>
+## Situação e problema
 
-## Problem Statement
+O que está acontecendo hoje e qual problema (ou oportunidade) isto resolve, do ponto de vista de quem sofre com ele (o cliente, a equipe, o dono).
 
-The problem that the user is facing, from the user's perspective.
+## Objetivo
 
-## Solution
+O resultado que queremos alcançar, em uma ou duas frases, de forma que dê para dizer depois se foi alcançado ou não.
 
-The solution to the problem, from the user's perspective.
+## Como saberemos que deu certo
 
-## User Stories
+Lista de sinais concretos e mensuráveis (por exemplo: "responder todo orçamento em até 24 horas", "reduzir devoluções de 8% para 4% em três meses").
 
-A LONG, numbered list of user stories. Each user story should be in the format of:
+## Para quem
 
-1. As an <actor>, I want a <feature>, so that <benefit>
+Quem é afetado ou beneficiado: clientes, equipe, fornecedores, sócios. Para cada grupo, o que muda na prática. Escreva como uma lista longa e numerada, no formato:
 
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
+1. Como <quem>, quero <o quê>, para <benefício>
 
-This list of user stories should be extremely extensive and cover all aspects of the feature.
+<exemplo>
+1. Como cliente, quero receber o orçamento no mesmo dia, para decidir sem ter que cobrar a loja.
+</exemplo>
 
-## Implementation Decisions
+## Decisões tomadas
 
-A list of implementation decisions that were made. This can include:
+As escolhas já feitas e o motivo de cada uma: o que será feito, por quem, com que ferramentas, em que ordem, com que orçamento e prazo. Registre a decisão e o porquê, não detalhes que mudam rápido (como preços de hoje ou nomes de planilhas).
 
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
+## Passos principais
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+As grandes etapas em ordem, sem entrar em detalhes de tarefa (para isso existe `/dividir-em-tarefas`).
 
-Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts, not a working demo, just the important bits.
+## Riscos e dependências
 
-## Testing Decisions
+O que pode dar errado, o que depende de terceiros e o que fazer se acontecer.
 
-A list of testing decisions that were made. Include:
+## Fora do escopo
 
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
+O que este plano deliberadamente NÃO cobre.
 
-## Out of Scope
+## Perguntas em aberto
 
-A description of the things that are out of scope for this spec.
+O que ainda precisa ser decidido ou descoberto, e quem pode responder.
 
-## Further Notes
+## Notas
 
-Any further notes about the feature.
+Qualquer outra informação útil.
 
-</spec-template>
+</modelo-de-plano>

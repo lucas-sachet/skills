@@ -1,128 +1,128 @@
 ---
 name: mapa-do-projeto
-description: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.
+description: Planeja um projeto grande demais para uma conversa só, como um mapa de decisões em arquivos, e resolve uma decisão por vez até o caminho ficar claro.
 disable-model-invocation: true
 ---
 
-A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its **decision tickets** (questions whose resolution is a decision, not slices of a build to execute) one at a time until the route is clear.
+Chegou uma ideia solta, grande demais para uma conversa só e envolta em névoa: o caminho daqui até o **destino** ainda não está visível. Esta skill existe para achar esse caminho, e não para correr até o destino. Ela desenha o caminho como um **mapa** em arquivos, e depois trabalha as **decisões** (perguntas cuja resposta é uma escolha, e não etapas de execução) uma por vez, até a rota ficar clara.
 
-The destination varies per effort, and naming it is the first act of charting: it shapes every ticket. It might be a spec to hand off and iterate on, a decision to lock before planning starts, or a change made in place like a data-structure migration. The map is domain-agnostic: engineering work, course content, whatever fits the shape.
+O destino varia a cada projeto, e nomeá-lo é o primeiro ato: ele molda todas as decisões. Pode ser um plano pronto para executar, uma escolha a travar antes de começar, ou uma mudança a fazer (trocar de sistema, abrir uma filial, lançar um produto).
 
-## Plan, don't do
+## Planejar, não executar
 
-Wayfinder is **planning** by default: each ticket resolves a decision, and the map is done when the way is clear, with nothing left to decide before someone goes and does the thing. The pull to just do the work is usually the signal you've reached the edge of the map and it's time to hand off. An effort can override this in its **Notes**, carrying execution into the map itself, but absent that, produce decisions, not deliverables.
+Por padrão, o mapa é de **planejamento**: cada decisão resolve uma escolha, e o mapa termina quando o caminho está claro e nada falta decidir antes de alguém ir fazer. A vontade de simplesmente fazer o trabalho costuma ser o sinal de que você chegou à borda do mapa e é hora de passar adiante (use `/montar-plano`). Um projeto pode mudar isso em suas **Notas**, mas, sem isso, produza decisões, não entregas.
 
-## Refer by name
+## Chame pelo nome
 
-Every map and ticket is an issue, so it has a **name**: its title. In everything the human reads (narration, the map's Decisions-so-far), refer to it by that name, never by a bare id, number, or slug. A wall of `#42, #43, #44` is illegible; names read at a glance. The id and URL don't vanish; a name wraps its link, but they ride _inside_ the name, never stand in for it.
+Todo mapa e toda decisão tem um **nome**: o título. Em tudo o que o usuário lê, refira-se a cada um pelo nome, nunca só pelo número. Uma lista de "decisão 4, 7, 9" é ilegível; nomes se leem de relance.
 
-## The Map
+## O mapa
 
-The map is a single issue on this repo's issue tracker, labelled `mapa-do-projeto:map`, the canonical artifact. Its tickets are child issues of the map.
+O mapa vive numa pasta `mapa-<assunto>/`, com um arquivo `MAPA.md` (o mapa em si) e uma pasta `decisoes/` (uma decisão por arquivo, `NN-titulo.md`).
 
-The map is an **index**, not a store. It lists the decisions made and points at the tickets that hold their detail; a decision lives in exactly one place, its ticket, so the map never restates it, only gists it and links.
+O mapa é um **índice**, não um depósito. Ele lista as decisões tomadas e aponta para os arquivos que guardam os detalhes. Uma decisão vive em um único lugar, o arquivo dela; o mapa só resume em uma linha e faz o link.
 
-**Where the map, its child tickets, blocking, and frontier queries physically live is tracker-specific.** The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`. Consult the tracker doc's "Wayfinding operations" section for how _this_ repo expresses them. If no tracker has been provided, default to the local-markdown tracker.
+### O corpo do `MAPA.md`
 
-### The map body
-
-The whole map at low resolution, loaded once per session. Open tickets are **not** listed: they are open child issues, found by query.
+O projeto inteiro em baixa resolução, lido uma vez por sessão. As decisões abertas não são listadas aqui: são os arquivos de `decisoes/` ainda não resolvidos.
 
 ```markdown
-## Destination
+# Mapa: <nome do projeto>
 
-<what reaching the end of this map looks like: the spec, decision, or change this effort is finding its way to. One or two lines; every session orients to it before choosing a ticket.>
+## Destino
 
-## Notes
+<como é chegar ao fim deste mapa: o plano, a escolha ou a mudança que se busca. Uma ou duas linhas; toda sessão se orienta por isto antes de escolher uma decisão.>
 
-<domain; skills every session should consult; standing preferences for this effort>
+## Notas
 
-## Decisions so far
+<o assunto; skills que toda sessão deve consultar; preferências fixas deste projeto>
 
-<!-- the index: one line per closed ticket, enough to judge relevance, then zoom the link for the detail the ticket holds -->
+## Decisões até agora
 
-- [<closed ticket title>](link): <one-line gist of the answer>
+- [<título da decisão resolvida>](decisoes/NN-titulo.md): <resumo da resposta em uma linha>
 
-## Not yet specified
+## Ainda não especificado
 
-<!-- see "Fog of war": in-scope fog you can't ticket yet; graduates as the frontier advances -->
+<névoa dentro do escopo que ainda não dá para transformar em decisão; vira decisão conforme o caminho avança>
 
-## Out of scope
+## Fora do escopo
 
-<!-- see "Out of scope": work ruled beyond the destination; closed, never graduates -->
+<o que foi descartado deste projeto; nunca volta, a não ser que o destino seja redesenhado>
 ```
 
-### Tickets
+### Decisões
 
-Each ticket is a **child issue** of the map; the tracker's issue id is its identity. Its body is the question, sized to one 100K token agent session:
+Cada decisão é um arquivo em `decisoes/`, com o número e o título no nome. O corpo é a pergunta, com tamanho para caber em uma conversa:
 
 ```markdown
-## Question
+# <NN>: <Título>
 
-<the decision or investigation this ticket resolves>
+**Tipo:** pesquisar | rascunho | questionar | tarefa
+
+**Depende de:** <decisões que travam esta, ou "Nenhuma">
+
+**Situação:** aberta | resolvida
+
+## Pergunta
+
+<a escolha ou investigação que esta decisão resolve>
 ```
 
-Each ticket carries a `mapa-do-projeto:<type>` label, one of `pesquisar`, `prototype`, `questionar`, `task` (see [Ticket Types](#ticket-types)). `mapa-do-projeto:` labels are the only labels a map and its tickets carry, never a triage label like `ready-for-agent`: they are decisions, not implementation work.
+A resposta não fica no corpo inicial: é registrada ao resolver (veja [Percorrer o mapa](#percorrer-o-mapa)). Materiais criados na decisão (rascunhos, pesquisas) ficam em arquivos ao lado e são apontados, não colados.
 
-A session **claims** a ticket by assigning it to the dev driving the map, **first**, before any work, so concurrent sessions skip it. That assignee _is_ the claim: an open, unassigned ticket is unclaimed.
+Uma decisão está **liberada** quando todas as que a travam estão resolvidas. A **fronteira** é o conjunto das decisões abertas e liberadas: a borda do que se conhece.
 
-Blocking uses the tracker's **native** dependency relationship: essential because it renders the frontier _visually_ in the tracker's own UI, so the human sees what's takeable without opening the map. Only a tracker that lacks native blocking falls back to a body convention. A ticket is **unblocked** when every ticket blocking it is closed; the **frontier** is the open, unblocked, unclaimed children, the edge of the known.
+## Tipos de decisão
 
-The answer isn't part of the body; it's recorded on resolution (see [Work through the map](#work-through-the-map)). Assets created while resolving a ticket are linked from the issue, not pasted in.
+Cada decisão é **com humano** (feita junto com o usuário, que fala por si) ou **sozinha** (o Claude resolve por conta própria). Uma decisão com humano só se resolve nessa conversa ao vivo; o Claude nunca responde no lugar do usuário (um "questionar" que responde às próprias perguntas quebrou a regra).
 
-## Ticket Types
+- **Pesquisar** (sozinha): ler documentos, sites oficiais ou materiais para achar um fato de que uma decisão depende. Resolvida por um subagente que chama a skill `pesquisar`. Use quando for preciso saber algo de fora.
+- **Rascunho** (com humano): subir o nível da conversa fazendo algo barato, simples e concreto para reagir (um esboço de página, um texto-modelo, uma tabela de preços de teste). Aponte o rascunho na decisão. Use quando a pergunta central for "como deve ser" ou "como deve funcionar".
+- **Questionar** (com humano): conversa. É o caso padrão. Chame sempre a skill `questionar`.
+- **Tarefa** (com humano ou sozinha): trabalho manual que precisa acontecer antes de se poder _decidir_: criar uma conta para avaliar uma ferramenta, liberar um acesso, juntar dados para ver o formato. É o único tipo que _faz_ em vez de decidir, e só existe para destravar uma decisão. Resolvida quando o trabalho está feito; a resposta registra o que foi feito e fatos de que decisões seguintes dependem.
 
-Every ticket is either **HITL** (human in the loop, worked _with_ a human who speaks for themselves) or **AFK**, driven by the agent alone. A HITL ticket only resolves through that live exchange; the agent never stands in for the human's side of it (a grilling agent that answers its own questions has broken this).
+## Névoa
 
-- **Research** (AFK): Reading documentation, third-party APIs, or local resources like knowledge bases to surface a fact a decision waits on. Resolved by a subagent that calls the Skill tool with "research". Use when knowledge outside the current working directory is required.
-- **Prototype** (HITL): Raise the fidelity of the discussion by making a cheap, rough, concrete artifact to react to (an outline, a rough take, a stub, or UI/logic code) by calling the Skill tool with "prototype". Links the prototype as an asset. Use when "how should it look" or "how should it behave" is the key question.
-- **Grilling** (HITL): Conversation. The default case. Always call the Skill tool twice, for "grilling" and "domain-modeling".
-- **Task** (HITL or AFK): Manual work that must happen before a _decision_ can be made: nothing to decide, prototype, or research, but the discussion is blocked until it's done. Signing up for a service so its API can be judged, provisioning access, moving data so its shape can be seen. This is the one type that _does_ rather than decides, and it earns its place by unblocking a decision, not by delivering the destination. The agent drives it alone where it can (AFK); otherwise it hands the human a precise checklist (HITL). Resolved when the work is done; the answer records what was done and any resulting facts (credentials location, new URLs, row counts) later tickets depend on.
+O mapa é _deliberadamente_ incompleto: não desenhe o que ainda não enxerga. Além das decisões ativas há a **névoa**: a visão turva das escolhas que você sabe que virão, mas ainda não consegue formular, porque dependem de perguntas em aberto. Resolver uma decisão limpa a névoa à frente e transforma o que já dá para especificar em decisões novas, uma por vez, até o caminho estar claro e não restar nenhuma.
 
-## Fog of war
+A seção **Ainda não especificado** é onde essa visão turva é anotada: a pergunta suspeita, a área para voltar depois. É a fronteira ainda desconhecida _em direção_ ao destino: tudo ali está no escopo, só não está nítido o bastante para virar decisão.
 
-The map is _deliberately_ incomplete: don't chart what you can't yet see. Beyond the live tickets lies the **fog of war**: the dim view of decisions and investigations you can tell are coming but can't yet pin down, because they hang on questions still open. Resolving a ticket clears the fog ahead of it, graduating whatever's now specifiable into fresh tickets, one at a time, until the way to the destination is clear and no tickets remain.
+**Névoa ou decisão?** O teste é se você consegue formular a pergunta com precisão agora, e _não_ se consegue respondê-la agora.
 
-The map's **Not yet specified** section is where that dim view is written down: the suspected question, the area to revisit later. It's the undiscovered frontier _toward_ the destination: everything here is in scope, just not sharp enough to ticket. Write as loosely or as fully as the view allows; it doubles as a signpost for collaborators reading where the effort is headed.
+- **Decisão** quando a pergunta já está nítida, mesmo que esteja travada.
+- **Ainda não especificado** quando você ainda não consegue formulá-la com nitidez. Não fatie a névoa em pedaços do tamanho de uma decisão: ela é mais grossa. Um trecho pode virar várias decisões, ou nenhuma, quando a fronteira chegar nele.
 
-**Fog or ticket?** The test is whether you can state the question precisely now, _not_ whether you can answer it now.
+**Ainda não especificado** exclui o que já foi decidido, o que já é uma decisão aberta e o que está fora do escopo.
 
-- **Ticket when** the question is already sharp, even if it's blocked and you can't act on it yet.
-- **Not yet specified when** you can't yet phrase it that sharply. Don't pre-slice the fog into ticket-sized pieces: it's coarser than a ticket, and one patch may graduate into several tickets, or none, once the frontier reaches it.
+## Fora do escopo
 
-**Not yet specified** excludes what's already decided (Decisions so far), what's already a live ticket, and what's out of scope (the next section).
+A névoa só se forma _em direção_ ao destino. O destino define o escopo, então o que fica além dele está **fora do escopo**: não é névoa e não pertence a **Ainda não especificado**. Vai para a seção **Fora do escopo**: o que você decidiu conscientemente deixar de fora _deste_ projeto.
 
-## Out of scope
+O que está fora do escopo nunca volta, a não ser que o destino seja redesenhado, e então como um projeto novo.
 
-Fog only ever gathers _toward_ the destination. The destination fixes the scope, so work beyond it is **out of scope**: it isn't fog, and it doesn't belong in **Not yet specified**. It gets its own **Out of scope** section on the map: work you've consciously ruled out of _this_ effort. Scope, not sharpness, lands it here.
+Descartar algo é um ato de escopo, não um passo no caminho. Quando uma decisão que já existe se revela além do destino, **marque-a como descartada** e deixe uma linha em **Fora do escopo**: o resumo e o motivo, com o link. Ela não entra em **Decisões até agora**, que registra a rota realmente percorrida.
 
-Out-of-scope work never graduates (the frontier stops at the destination), so it returns only if the destination is redrawn, and then as a fresh effort, not a resumption.
+## Como usar
 
-Ruling something out of scope is a scoping act, not a step on the route. When a ticket that already exists turns out to sit past the destination (mis-scoped in while charting, or exposed by a resolution), **close it** (a closed ticket is unambiguously off the frontier) and leave one line in the **Out of scope** section: the gist plus why it's out of scope, linking the closed ticket. It stays out of **Decisions so far**, which records the route actually walked; a scope boundary isn't a step on it.
+Dois modos. Em ambos, **nunca resolva mais de uma decisão por sessão**, exceto as de pesquisar.
 
-## Invocation
+### Desenhar o mapa
 
-Two modes. Either way, **never resolve more than one ticket per session**, with the exception of research tickets.
+O usuário chega com uma ideia solta.
 
-### Chart the map
+1. **Nomeie o destino.** Chame a skill `questionar` para fixar aonde este mapa quer chegar: o plano, a escolha ou a mudança. O destino define o escopo, então vem primeiro.
+2. **Mapeie a fronteira.** Questione de novo, agora **em largura**: abra o leque pelo espaço inteiro em vez de ir fundo em um fio só, trazendo as decisões em aberto e os primeiros passos possíveis agora. **Se não aparecer névoa** (o caminho já está claro e a jornada é pequena o bastante para uma conversa), não precisa de mapa. Pare e pergunte ao usuário como prefere seguir.
+3. **Crie a pasta e o `MAPA.md`**: Destino e Notas preenchidos, Decisões até agora vazio, a névoa esboçada em **Ainda não especificado**.
+4. **Crie as decisões que já dá para especificar**, um arquivo cada, e ligue as dependências numa **segunda passada** (os arquivos precisam existir antes de se referenciarem). Isso separa a fronteira das decisões travadas; o que ainda não dá para especificar fica na névoa.
+5. **Dispare as pesquisas.** Para cada decisão do tipo `pesquisar` criada, chame um subagente que use a skill `pesquisar` para resolvê-la em paralelo, guardando o resultado em arquivo ao lado da decisão.
+6. Pare: desenhar é o trabalho de uma sessão; não resolva nenhuma decisão à mão.
 
-User invokes with a loose idea.
+### Percorrer o mapa
 
-1. **Name the destination.** Call the Skill tool twice, for "grilling" and "domain-modeling", to pin down what this map is finding its way to: the spec, decision, or change. The destination fixes the scope, so it's settled first.
-2. **Map the frontier.** Grill again, **breadth-first** this time: fan out across the whole space rather than deep on any one thread, surfacing the open decisions and the first steps takeable now. **If this surfaces no fog** (the way to the destination is already clear, the whole journey small enough for one session), you don't need a map. Stop and ask the user how they'd like to proceed.
-3. **Create the map** (label `mapa-do-projeto:map`): Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**.
-4. **Create the tickets you can specify now** as child issues of the map, then wire blocking edges in a **second pass** (issues need ids before they can reference each other). Write cross-references in that pass too, with real ids: a placeholder `#<n>` auto-links to an unrelated issue. Wiring sorts them into the frontier and the blocked; everything you can't yet specify stays in the fog: the **Not yet specified** section.
-5. **Fire the research subagents.** For each `pesquisar` ticket you just created, spin up a subagent that calls the Skill tool with "research" to resolve it in parallel, capturing its findings on a throwaway `pesquisar/<name>` branch with a context pointer from the ticket. Push the branch but open no PR: it is never merged.
-6. Stop: charting is one session's work; it hand-resolves nothing.
+O usuário chega com um mapa (a pasta). Uma decisão é **opcional**: sem ela, quem escolhe a próxima é você, não o usuário.
 
-### Work through the map
-
-User invokes with a map (URL or number). A ticket is **optional**: without one, you pick the next decision, not the user.
-
-1. Load the **map**: the low-res view, not every ticket body.
-2. Choose the ticket. If the user named one, use it. Otherwise take the first frontier ticket in order. **Claim it**: assign it to yourself before any work.
-3. Resolve it as the type its `mapa-do-projeto:<type>` label names (see [Ticket Types](#ticket-types)). Read the label, not just the body: the body never states the type. **Zoom as needed**: fetch the full body of any related or closed ticket on demand; call the Skill tool for whichever skills the `## Notes` block names. If in doubt, call the Skill tool twice, for "grilling" and "domain-modeling".
-4. Record the resolution: post the answer as a **resolution comment**, **close** the issue, and **append a context pointer** to the map's Decisions-so-far.
-5. Add newly-surfaced tickets (create-then-wire); graduate any fog the answer has made specifiable, clearing each graduated patch from **Not yet specified** so it lives only as its new ticket. If the answer reveals that a ticket (this one or another) sits beyond the destination, **rule it out of scope** rather than resolving it on the route. If the decision invalidates other parts of the map, update or delete those tickets.
-
-The user may run unblocked tickets in parallel, so expect other sessions to be editing the tracker concurrently.
+1. Carregue o **mapa**: a visão de baixa resolução, e não o corpo de todas as decisões.
+2. Escolha a decisão. Se o usuário indicou uma, use-a. Senão, pegue a primeira da fronteira, na ordem.
+3. Resolva-a conforme o **tipo** (veja [Tipos de decisão](#tipos-de-decisão)). Leia o tipo no arquivo, e não só o corpo. **Aproxime quando precisar**: abra o corpo completo de qualquer decisão relacionada ou resolvida; chame as skills que o bloco `## Notas` indicar. Na dúvida, chame a skill `questionar`.
+4. Registre a resolução: escreva a resposta no arquivo da decisão, mude a situação para **resolvida** e acrescente uma linha em **Decisões até agora** no mapa, com o link.
+5. Acrescente as decisões que surgiram; transforme em decisão a névoa que a resposta tornou especificável, tirando cada trecho de **Ainda não especificado** para ele viver só como decisão. Se a resposta revelar que uma decisão (esta ou outra) fica além do destino, **marque como fora do escopo** em vez de resolvê-la na rota. Se a decisão invalidar outras partes do mapa, atualize ou apague essas decisões.

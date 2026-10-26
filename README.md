@@ -14,14 +14,14 @@ Se você está começando e não sabe por onde ir, digite `/primeiros-passos`. O
 
 ## Instalação
 
-Você precisa ter o **Claude Code** instalado (siga a documentação oficial da Anthropic). Depois, no terminal:
+Você precisa ter o **Claude Code** instalado. Depois, no terminal:
 
 ```bash
 claude plugin marketplace add lucas-sachet/skills
 claude plugin install habilidades@lucas-sachet
 ```
 
-Para usar, abra o Claude Code numa pasta do seu negócio e digite `/` seguido do nome da habilidade. O nome completo tem o prefixo `habilidades:` (por exemplo, `/habilidades:questionar`), e o Claude Code mostra a lista enquanto você digita.
+Para usar, abra o Claude Code numa pasta do seu negócio e digite `/` seguido do nome da habilidade (por exemplo, `/questionar`). O Claude Code mostra a lista enquanto você digita.
 
 > **Dica:** as habilidades salvam arquivos (planos, procedimentos, o tom de voz da empresa) na pasta onde você está. Use uma pasta por negócio ou por assunto, para os arquivos ficarem organizados e o Claude achar o que já foi combinado.
 
@@ -87,7 +87,7 @@ Um fluxo em três etapas, para artigos, posts e discursos:
 
 ## Estado do projeto
 
-Em construção. As habilidades foram escritas e revisadas, mas ainda estão sendo testadas no uso real. Se algo não funcionar como esperado, abra uma [issue](https://github.com/lucas-sachet/skills/issues) contando o que você pediu, o que o Claude fez e o que você esperava.
+Em construção. As habilidades foram escritas e revisadas, mas ainda estão sendo testadas no uso real.
 
 ## Créditos e licença
 

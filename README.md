@@ -41,6 +41,23 @@ Não mude nenhuma outra configuração do meu computador. Se for preciso alterar
 
 > **Dica:** as habilidades salvam arquivos (planos, procedimentos, o tom de voz da empresa) na pasta onde você está. Use uma pasta por negócio ou por assunto, para os arquivos ficarem organizados e o Claude achar o que já foi combinado.
 
+## Como remover
+
+Você pode tirar as habilidades a qualquer momento. Seus arquivos (planos, procedimentos, tom de voz) ficam nas suas pastas e **não são apagados**.
+
+Para desinstalar:
+
+```bash
+claude plugin uninstall habilidades
+claude plugin marketplace remove lucas-sachet
+```
+
+O primeiro comando remove o plugin. O segundo tira a fonte de onde ele veio, e só é necessário se você não pretende reinstalar. Abra uma conversa nova para a mudança valer.
+
+Se prefere só pausar, sem desinstalar, use `claude plugin disable habilidades` (e `claude plugin enable habilidades` para voltar).
+
+Se o terminal não reconhece o `claude`, peça ao próprio Claude: *"Desinstale o plugin Habilidades do Claude Code (`claude plugin uninstall habilidades` e depois `claude plugin marketplace remove lucas-sachet`), usando o caminho completo do `claude.exe` se for preciso, e me diga quando terminar."*
+
 ## As habilidades
 
 ### Para começar

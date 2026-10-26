@@ -1,54 +1,53 @@
 ---
 name: fazer-questionario
-description: Turn a decision you can't fully answer into a questionnaire for someone else to fill in.
+description: Transforma uma decisão que você não consegue tomar sozinho num questionário para outra pessoa responder (um contador, um fornecedor, um sócio, um cliente).
 disable-model-invocation: true
 ---
 
-Turn something the user can't answer alone into a **questionnaire**: a Markdown document they hand to one person to fill in async, or fill out together over a meeting. The recipient holds knowledge the user lacks; the questionnaire pulls it out of them.
+Transforme algo que o usuário não consegue resolver sozinho num **questionário**: um documento Markdown que ele entrega a uma pessoa para responder quando puder, ou para preencherem juntos numa reunião. Quem recebe tem um conhecimento que o usuário não tem, e o questionário tira isso dela.
 
-**Grill the send, not the subject.** Interview the user only about the _send_, which they can always answer: who it goes to, and what they need back. The questions in the document then target the **gap** between what the recipient knows and what the user needs.
+**Questione o envio, não o assunto.** Entreviste o usuário apenas sobre o _envio_, que ele sempre sabe responder: para quem vai e o que ele precisa receber de volta. As perguntas do documento miram a **lacuna** entre o que a pessoa sabe e o que o usuário precisa saber.
 
+1. **Para quem vai?** Pergunte, de uma vez, a função da pessoa, o quanto ela entende do assunto e a relação dela com o usuário. Isso define o tom do questionário e quanto contexto ele precisa trazer. Está pronto quando você sabe quem é o destinatário e o que ele sabe que o usuário não sabe.
 
-1. **Who is it going to?** Ask, in one exchange, the recipient's role, expertise, and relationship to the user. This fixes the questionnaire's tone and how much context it must carry. Done when you know who the recipient is and what they know that the user doesn't.
+2. **O que você precisa receber de volta?** Pergunte, de uma vez, as decisões ou informações que o usuário não consegue resolver sozinho e precisa dessa pessoa. Está pronto quando você tem uma lista concreta do que o usuário precisa conseguir decidir ou fazer depois.
 
-2. **What do you need back?** Ask, in one exchange, the specific decisions or facts the user can't resolve alone and needs from this person. Done when you have a concrete list of what the user must walk away able to do or decide.
+3. **Escreva o questionário.** Redija perguntas que mirem a lacuna dos passos 1 e 2, seguindo a estrutura abaixo. Salve em `questionario-<assunto>.md` na pasta atual e diga o caminho. Está pronto quando o arquivo existe e cada item citado no passo 2 é coberto por uma pergunta.
 
-3. **Write the questionnaire.** Draft questions aimed at the gap from steps 1–2, following the Document structure below. Write it to `fazer-questionario-<slug>.md` in the current directory (slug from the topic) and report the path. Done when the file exists and every item the user named in step 2 is covered by a question.
+## Estrutura do documento
 
-## Document structure
+Trate o documento como um **questionário de descoberta**: o usuário não tem o contexto, o destinatário tem. Ponha as perguntas mais importantes primeiro, porque por escrito talvez só haja uma chance de resposta, e agrupe por tema com títulos `##` quando houver mais do que meia dúzia. Use o modelo abaixo.
 
-Frame the document as a **discovery questionnaire**: the user lacks context, the recipient holds it. Order questions most-important-first, since async means you may only get one pass, and group them under `##` headings by theme once there are more than a handful. Write it using the template below.
+<modelo-de-questionario>
 
-<questionnaire-template>
+# <Título do questionário>
 
-# <Questionnaire title>
+**Objetivo:** por que este questionário existe e qual decisão depende dele.
 
-**Purpose:** why this questionnaire exists and the decision riding on it.
+**De:** <o usuário>, **Para:** <o destinatário>, **Como suas respostas serão usadas:** <onde vão parar>
 
-**From:** <the user>, **To:** <the recipient>, **How your answers will be used:** <where they go>
+## Contexto
 
-## Context
+Um parágrafo que situa quem não estava na cabeça do usuário. O suficiente para responder bem, não uma página.
 
-One paragraph orienting a recipient who wasn't in the user's head. Enough to answer well, not a page.
+## Como responder
 
-## How to answer
+Prazo e esforço aproximado. Respostas parciais e "não sei" ajudam: avise o que não tiver certeza em vez de pular.
 
-Deadline and rough effort. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
+## <Título do tema>
 
-## <Theme heading>
+Uma seção `##` por tema. Embaixo, as perguntas, da mais importante para a menos. Cada pergunta trata de uma ideia só, nunca duas juntas, com um espaço para resposta logo abaixo, e uma linha _por que isso importa_ apenas quando a pergunta puder ser mal entendida ou convidar uma resposta apressada.
 
-One `##` section per theme. Under each, its questions, most-important-first. Every question is one idea, never compound, with an answer stub directly beneath, and a one-line _why this matters_ only where the question could be misread or invite a throwaway answer.
+<exemplo-de-pergunta>
+### Quantos pedidos por mês a loja deve ter nos primeiros seis meses?
 
-<question-example>
-### What load is the system expected to handle at launch?
-
-_Why this matters: it decides whether we provision for burst traffic now or defer it._
+_Por que isso importa: define se contratamos um sistema de estoque agora ou só depois._
 
 >
-</question-example>
+</exemplo-de-pergunta>
 
-## Anything else?
+## Mais alguma coisa?
 
-A closing catch-all: anything we didn't ask that we should know?
+Um fecho aberto: algo que não perguntamos e que deveríamos saber?
 
-</questionnaire-template>
+</modelo-de-questionario>

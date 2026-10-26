@@ -27,6 +27,7 @@ claude plugin install habilidades@lucas-sachet
 | [montar-plano](skills/montar-plano/SKILL.md), [dividir-em-tarefas](skills/dividir-em-tarefas/SKILL.md), [mapa-do-projeto](skills/mapa-do-projeto/SKILL.md), [executar-tarefas](skills/executar-tarefas/SKILL.md) | Do plano às tarefas de um projeto | Pronta |
 | [escrever-ideias](skills/escrever-ideias/SKILL.md), [escrever-roteiro](skills/escrever-roteiro/SKILL.md), [escrever-rascunho](skills/escrever-rascunho/SKILL.md) | Escrever um texto em três etapas | Pronta |
 | [planejar-semana](skills/planejar-semana/SKILL.md) | Escolher as prioridades da semana, distribuir nos dias e revisar na sexta | Pronta |
+| [escrever-procedimento](skills/escrever-procedimento/SKILL.md) | Documentar um processo (SOP/POP) para qualquer pessoa conseguir seguir | Pronta |
 | [primeiros-passos](skills/primeiros-passos/SKILL.md) | Guia para quem está começando: por onde começar e como pedir melhor | Pronta |
 | [braco-direito](skills/braco-direito/SKILL.md) | Perseguir uma meta longa coordenando vários agentes | Pronta |
 

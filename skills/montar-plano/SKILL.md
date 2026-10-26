@@ -1,6 +1,6 @@
 ---
 name: montar-plano
-description: Transforma a conversa atual num plano escrito (objetivo, decisões, passos, riscos), sem entrevistar o usuário: só reúne o que já foi combinado.
+description: 'Transforma a conversa atual num plano escrito (objetivo, decisões, passos, riscos), sem entrevistar o usuário: só reúne o que já foi combinado.'
 disable-model-invocation: true
 ---
 

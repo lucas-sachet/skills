@@ -1,79 +1,79 @@
 ---
 name: escrever-ideias
-description: "Writing, explore: mine raw fragments, no structure yet."
+description: "Escrita, fase de explorar: junta ideias soltas e fragmentos sobre um tema, sem estrutura ainda. Use antes de escrever um artigo, post, proposta ou discurso."
 disable-model-invocation: true
 ---
 
-<what-to-do>
+<o-que-fazer>
 
-This is pure **explore**: widen the space of what could be written without committing to structure. Committing is _exploit_, a separate skill's job. Run a grilling session that produces fragments, interviewing the user relentlessly about whatever they want to write about. Imposing phases, outlines, or article structure is out of scope here.
+Esta é a fase de **explorar**: ampliar o espaço do que pode ser escrito sem se comprometer com uma estrutura. Se comprometer é _fechar_, o trabalho de outra skill. Conduza uma sessão de perguntas (como a skill `questionar`) que produza fragmentos, entrevistando o usuário sem dó sobre aquilo que ele quer escrever. Impor etapas, roteiros ou estrutura de texto está fora do escopo aqui.
 
-As fragments emerge from either side of the conversation, append them to a single markdown file.
+À medida que fragmentos surgirem de qualquer lado da conversa, acrescente-os a um único arquivo Markdown.
 
-If the user did not pass a path, ask once where to save the document, then remember it for the rest of the session.
+Se o usuário não indicou um caminho, pergunte uma vez onde salvar o documento e lembre-se disso pelo resto da sessão.
 
-Capture fragments from the very first thing the user says, including the initial prompt.
+Capture fragmentos desde a primeira coisa que o usuário disser, inclusive o pedido inicial.
 
-On first write, put a single H1 at the top with a working title (it can change later) and nothing else: no metadata, no TOC, no date.
+Na primeira gravação, ponha só um título H1 no topo, com um título provisório (pode mudar depois), e nada mais: sem metadados, sem índice, sem data.
 
-</what-to-do>
+</o-que-fazer>
 
-<supporting-info>
+<informacoes-de-apoio>
 
-## What is a fragment
+## O que é um fragmento
 
-A fragment is any piece of text that might survive into the final article. It must be _readable by the author_ (the author can tell what it means), but it does not need to define its terms or be comprehensible to a cold reader. The bar is "is this a piece of good writing?", not "is this a self-contained argument?"
+Um fragmento é qualquer trecho de texto que possa sobreviver até o texto final. Ele precisa ser _legível pelo autor_ (o autor entende o que significa), mas não precisa definir seus termos nem ser compreensível para um leitor que chega sem contexto. O critério é "isto é um bom trecho de escrita?", e não "isto é um argumento completo?".
 
-Fragments are deliberately heterogeneous. Examples of what could be a fragment:
+Os fragmentos são propositalmente variados. Exemplos do que pode ser um fragmento:
 
-- A sharp sentence you'd want to deploy somewhere but don't yet know where.
-- A claim with a one-line justification.
-- A vignette: a thing that happened, a code snippet, a scenario, an analogy.
-- A half-thought: "something about how X feels like Y, work this out later."
-- A quote, a piece of dialogue, an overheard line.
-- A list of related observations that hang together by feel.
-- A complaint, a confession, a punchline.
-- A **leading word**: a compact metaphor or coinage the whole piece can hang on (one term that names the idea, the way _tracer bullets_ or _fog of war_ names a whole pattern).
+- Uma frase afiada que você gostaria de usar em algum lugar, ainda sem saber onde.
+- Uma afirmação com uma justificativa de uma linha.
+- Uma cena: algo que aconteceu com um cliente, um caso da equipe, um exemplo, uma analogia.
+- Um pensamento pela metade: "algo sobre como X lembra Y, desenvolver depois".
+- Uma citação, um trecho de conversa, uma frase ouvida por aí.
+- Uma lista de observações relacionadas que combinam por intuição.
+- Uma reclamação, uma confissão, uma piada.
+- Uma **palavra-guia**: uma metáfora curta ou expressão que sustenta o texto inteiro (um termo que dá nome à ideia, como "balcão de padaria" para um atendimento sem pressa).
 
-Of these, the leading word is the most valuable fragment to land. It is load-bearing: name the right one in explore and it shapes the structure, the transitions, and the title later, paying dividends through the entire exploit phase. When the conversation circles a recurring idea, push to coin a word for it.
+Entre esses, a palavra-guia é o fragmento mais valioso de se conseguir. Ela sustenta o texto: acertar a palavra na fase de explorar molda a estrutura, as transições e o título depois, e rende ao longo de toda a fase de fechar. Quando a conversa girar em torno de uma ideia que se repete, force a criação de uma palavra para ela.
 
-The novelist's diary is the model: years of unstructured noticings that later get mined for raw material. Fragments are noticings.
+O modelo é o diário do romancista: anos de observações sem estrutura que depois são garimpadas como matéria-prima. Fragmentos são observações.
 
-## File format
+## Formato do arquivo
 
 ```markdown
-# Working title
+# Título provisório
 
-A first fragment lives here.
+Aqui mora um primeiro fragmento.
 
-It can be multiple paragraphs. It can include lists, code, quotes: whatever
-shape the fragment naturally takes.
-
----
-
-A second fragment.
+Pode ter vários parágrafos. Pode ter listas, citações: seja qual for
+a forma que o fragmento tomar naturalmente.
 
 ---
 
-> A quoted line that the user wants to keep around.
-
-A reaction to it.
+Um segundo fragmento.
 
 ---
 
-- A cluster of related observations
-- That hang together by feel
-- And want to be near each other
+> Uma frase citada que o usuário quer guardar por perto.
+
+Uma reação a ela.
+
+---
+
+- Um grupo de observações relacionadas
+- Que combinam por intuição
+- E querem ficar perto umas das outras
 ```
 
-Fragments are separated by a horizontal rule (`\n---\n`). No headings inside the body. No tags. No order beyond the order they were added.
+Os fragmentos são separados por uma linha horizontal (`\n---\n`). Sem títulos dentro do corpo. Sem etiquetas. Sem ordem além da de chegada.
 
-## Writing rhythm
+## Ritmo de escrita
 
-Append silently. Don't ask permission for each fragment. Mention what you added in passing ("adding that"), but don't interrupt the conversation with save dialogs.
+Acrescente em silêncio. Não peça permissão para cada fragmento. Mencione o que acrescentou de passagem ("anotei essa"), sem interromper a conversa com avisos de gravação.
 
-Before every write: re-read the file from disk. The user may have edited, reordered, or deleted fragments between turns, so preserve their changes. Never overwrite the file; only append (or, if the user asks, edit a specific fragment in place).
+Antes de cada gravação, releia o arquivo do disco. O usuário pode ter editado, reordenado ou apagado fragmentos entre uma mensagem e outra, então preserve as mudanças dele. Nunca sobrescreva o arquivo: só acrescente (ou, se o usuário pedir, edite um fragmento específico no lugar).
 
-The user can say "cut the last one", "rewrite that one sharper", "merge those two" at any time. Treat those as first-class instructions.
+O usuário pode dizer "corta o último", "reescreve esse mais afiado", "junta esses dois" a qualquer momento. Trate isso como instrução de primeira classe.
 
-</supporting-info>
+</informacoes-de-apoio>

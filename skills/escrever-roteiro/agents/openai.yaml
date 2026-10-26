@@ -1,5 +1,3 @@
 interface:
-  display_name: "Writing Beats"
-  short_description: "Assemble raw material into beats"
-policy:
-  allow_implicit_invocation: false
+  display_name: "Escrever: roteiro"
+  short_description: "Monte um texto momento a momento"

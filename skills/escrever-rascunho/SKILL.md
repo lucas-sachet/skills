@@ -1,79 +1,78 @@
 ---
 name: escrever-rascunho
-description: "Writing, exploit: shape raw material into an article, paragraph by paragraph."
+description: "Escrita, fase de fechar: transforma material bruto em um texto (artigo, post, proposta, relatório), parágrafo por parágrafo."
 disable-model-invocation: true
 ---
 
-<what-to-do>
+<o-que-fazer>
 
-The user has passed (or will pass) a markdown file of raw material. Treat it as the input pile: anything from a tidy list of fragments to a wall of unstructured prose to a transcript. The format does not matter. Read it end-to-end before doing anything else.
+O usuário passou (ou vai passar) um arquivo Markdown com material bruto. Trate-o como o monte de entrada: pode ser desde uma lista organizada de fragmentos até um paredão de texto sem estrutura ou uma transcrição. O formato não importa. Leia-o de ponta a ponta antes de fazer qualquer outra coisa.
 
-Then run a shaping session that produces a separate article document. This is **exploit**: the exploring is done, the pile is fixed: commit to a structure and mine the pile to fill it. Do not edit the raw material file: it is read-only to this skill.
+Depois conduza uma sessão de modelagem que produza um documento separado com o texto. Esta é a fase de **fechar**: a exploração acabou, o monte está fixo: comprometa-se com uma estrutura e garimpe o monte para preenchê-la. Não edite o arquivo de material bruto: para esta skill ele é somente leitura.
 
-If the user did not say where to save the article, ask once and remember the path.
+Se o usuário não disse onde salvar o texto, pergunte uma vez e lembre o caminho.
 
-</what-to-do>
+</o-que-fazer>
 
-<supporting-info>
+<informacoes-de-apoio>
 
-## The loop
+## O ciclo
 
-1. **Read the pile.** Read the input file in full. Form a sense of what's in it.
-2. **Establish the prerequisites.** Settle with the user what the reader knows walking in: the concepts that are **grounded** from the start. Everything else must be grounded by a block before a later block can lean on it. See [Grounding](#grounding).
-3. **Draft 2–3 candidate openings.** Each opening should imply a different thesis or angle for the article. Show all of them. Force the user to pick or compose a hybrid. The chosen opening defines what the rest of the article must do.
-4. **Grow paragraph by paragraph.** After the opening lands, ask "given this opening, what does the reader need to hear next?" Pull material from the pile to answer. The next block may only lean on grounded concepts, and grounds new ones as it lands. Argue about the form the next block takes: a paragraph, a list, a table, a callout, a quote, a code block. Each format choice should be deliberate and defensible.
-5. **Append to the article file as you go.** Don't batch. Write each agreed paragraph or block immediately so the user can see the article taking shape.
-6. **Loop step 4 until the article is done.** The user decides when it's done.
+1. **Leia o monte.** Leia o arquivo de entrada inteiro. Forme uma ideia do que há nele.
+2. **Defina os pré-requisitos.** Combine com o usuário o que o leitor já sabe ao chegar: os conceitos que já estão **explicados** desde o início. Todo o resto precisa ser explicado por um bloco antes de um bloco posterior poder se apoiar nele. Veja [Conceitos já explicados](#conceitos-já-explicados).
+3. **Rascunhe 2 ou 3 aberturas candidatas.** Cada abertura deve sugerir uma tese ou um ângulo diferente para o texto. Mostre todas. Obrigue o usuário a escolher ou compor um híbrido. A abertura escolhida define o que o resto do texto precisa fazer.
+4. **Cresça parágrafo por parágrafo.** Depois que a abertura se firma, pergunte: "dada esta abertura, o que o leitor precisa ouvir agora?". Puxe material do monte para responder. O próximo bloco só pode se apoiar em conceitos já explicados e explica novos ao se firmar. Discuta a forma do próximo bloco: um parágrafo, uma lista, uma tabela, um destaque, uma citação. Cada escolha de formato deve ser deliberada e defensável.
+5. **Acrescente ao arquivo do texto conforme avança.** Não junte em lote. Grave cada parágrafo ou bloco combinado imediatamente, para o usuário ver o texto tomando forma.
+6. **Repita o passo 4 até o texto terminar.** O usuário decide quando terminou.
 
-## Grounding
+## Conceitos já explicados
 
-Every **concept** has to be **grounded** before a block can lean on it: the reader either walked in knowing it or met it in an earlier block. A block that reaches for an ungrounded concept loses the reader. The unit is the concept, not the word for it: a block can lean on an idea the reader lacks even with no jargon in sight. Where a concept has a name (a **term**), grounding it means landing the idea and the term together.
+Todo **conceito** precisa estar **explicado** antes de um bloco se apoiar nele: o leitor ou já chegou sabendo, ou o conheceu num bloco anterior. Um bloco que usa um conceito não explicado perde o leitor. A unidade é o conceito, não a palavra: um bloco pode depender de uma ideia que o leitor não tem mesmo sem nenhum jargão à vista. Quando o conceito tem nome (um **termo**), explicá-lo significa apresentar a ideia e o termo juntos.
 
-A concept gets grounded one of two ways:
+Um conceito é explicado de duas formas:
 
-- **Prerequisite**: grounded before the opening. The reader brings it. Fixed at the start.
-- **Introduced**: a block establishes it, and from then on it's grounded for the rest of the article.
+- **Pré-requisito**: explicado antes da abertura. O leitor já traz. Fixado no início.
+- **Introduzido**: um bloco o estabelece e, a partir daí, ele está explicado para o resto do texto.
 
-Keep a running list of what's grounded. When you ask "what does the reader need to hear next?", an ungrounded concept the next move needs is itself the answer: ground it first (here or in an earlier block) or you can't make the move. This is the gap-naming of [Pulling from the pile](#pulling-from-the-pile) one level up: there the pile is missing material; here the article is missing a foundation.
+Mantenha uma lista corrida do que já foi explicado. Quando perguntar "o que o leitor precisa ouvir agora?", um conceito não explicado de que o próximo movimento precisa é a própria resposta: explique-o primeiro (aqui ou num bloco anterior), ou não dá para fazer o movimento. É o mesmo apontar de lacunas de [Garimpar o monte](#garimpar-o-monte) um nível acima: lá falta material ao monte; aqui falta uma base ao texto.
 
-The lever is what you make a prerequisite versus what you ground inside the article. Demand too much up front and you shut readers out; ground too much inside and the opening drowns in definitions. Settle it with the user when you establish prerequisites.
+A alavanca é o que você torna pré-requisito e o que explica dentro do texto. Exigir demais de antemão afasta leitores; explicar demais dentro do texto afoga a abertura em definições. Combine isso com o usuário ao definir os pré-requisitos.
 
-## Conversational feel
+## Clima da conversa
 
-This is a grilling session inverted. In ideation, the question was "what are you actually noticing?" Here it's "what is this article actually arguing, and in what order does the reader need to hear it?" Push back. Refuse to let weak transitions slide. If a paragraph doesn't earn its place, cut it.
+É uma sessão de perguntas ao contrário. Na fase de ideias, a pergunta era "o que você realmente está percebendo?". Aqui é "o que este texto realmente defende, e em que ordem o leitor precisa ouvir?". Pressione. Não deixe uma transição fraca passar. Se um parágrafo não merece o lugar, corte.
 
-Specific moves to keep using:
+Movimentos específicos para usar sempre:
 
-- "What does this paragraph do for the reader that the previous one didn't?"
-- "If I cut this, what breaks?"
-- "Is this prose, or should it be a list? Why prose?"
-- "This sentence is doing two jobs: split it or pick one."
-- "The opening promised X. We've drifted to Y. Either re-thread it or change the opening."
+- "O que este parágrafo faz pelo leitor que o anterior não fez?"
+- "Se eu cortar isto, o que quebra?"
+- "Isto é prosa, ou deveria ser uma lista? Por que prosa?"
+- "Esta frase está fazendo dois trabalhos: divida ou escolha um."
+- "A abertura prometeu X. Derivamos para Y. Ou voltamos ao fio, ou mudamos a abertura."
 
-## Pulling from the pile
+## Garimpar o monte
 
-Treat the raw material as a quarry, not a script. Pull a fragment, rework it to fit the surrounding paragraph, and place it. A fragment may be split across multiple paragraphs, merged with another, or paraphrased. The pile's job is to be mined; the article's job is to read as one voice.
+Trate o material bruto como uma pedreira, não como um roteiro. Puxe um fragmento, adapte-o ao parágrafo ao redor e coloque. Um fragmento pode ser dividido em vários parágrafos, fundido com outro ou parafraseado. O trabalho do monte é ser garimpado; o trabalho do texto é soar como uma voz só.
 
-If the pile lacks something the article needs, name the gap explicitly: "We need an example here and the pile doesn't have one. Give me one now or we cut this section."
+Se o monte não tem algo de que o texto precisa, nomeie a lacuna explicitamente: "Precisamos de um exemplo aqui e o monte não tem. Me dê um agora, ou cortamos esta seção."
 
-## Format arguments to actually have
+## Discussões de formato que valem ter
 
-When choosing how to render a block, weigh these tradeoffs out loud with the user, not silently:
+Ao escolher como apresentar um bloco, pese estas trocas em voz alta com o usuário, e não em silêncio:
 
-- **Prose vs. list.** Prose carries argument; lists carry parallel items. If items aren't truly parallel, prose is better. If they are, a list is faster to scan.
-- **Inline vs. callout.** Tips, warnings, and asides go in callouts (`> [!TIP]`, `> [!NOTE]`), but only if they'd genuinely derail the main argument inline. Otherwise leave them inline.
-- **Table vs. repeated structure.** If the same shape repeats 3+ times with the same fields, a table. Otherwise prose with bold leads.
-- **Quote vs. paraphrase.** Quote when the original wording is the point. Paraphrase when only the idea matters.
-- **Code block vs. inline code.** Multi-line, runnable, or illustrative → block. Single token or identifier → inline.
+- **Prosa ou lista.** A prosa carrega argumento; a lista carrega itens paralelos. Se os itens não são realmente paralelos, a prosa é melhor. Se são, a lista é mais rápida de ler.
+- **No texto ou em destaque.** Dicas, avisos e comentários vão em destaques (`> [!TIP]`, `> [!NOTE]`), mas só se atrapalhassem o argumento principal dentro do texto. Do contrário, deixe no texto.
+- **Tabela ou estrutura repetida.** Se o mesmo formato se repete 3 vezes ou mais com os mesmos campos, tabela. Senão, prosa com abertura em negrito.
+- **Citação ou paráfrase.** Cite quando as palavras originais são o ponto. Parafraseie quando só a ideia importa.
 
-## Writing rhythm
+## Ritmo de escrita
 
-Append to the article file as each block is agreed. Re-read the file from disk before every write: the user may have edited between turns. Never overwrite blindly. If the user wants a paragraph rewritten, edit that specific paragraph in place; leave the rest alone.
+Acrescente ao arquivo do texto à medida que cada bloco é combinado. Releia o arquivo do disco antes de cada gravação: o usuário pode ter editado entre uma mensagem e outra. Nunca sobrescreva às cegas. Se o usuário quiser reescrever um parágrafo, edite esse parágrafo no lugar e deixe o resto em paz.
 
-## Out of scope
+## Fora do escopo
 
-- Mining for new fragments that aren't in the pile (handle gaps as in "Pulling from the pile").
-- Editing the raw material file.
-- Publishing, formatting for a specific platform, or adding frontmatter the user didn't ask for.
+- Garimpar fragmentos novos que não estão no monte (trate as lacunas como em "Garimpar o monte").
+- Editar o arquivo de material bruto.
+- Publicar, formatar para uma plataforma específica ou adicionar cabeçalhos que o usuário não pediu.
 
-</supporting-info>
+</informacoes-de-apoio>

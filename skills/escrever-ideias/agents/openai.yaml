@@ -1,5 +1,3 @@
 interface:
-  display_name: "Writing Fragments"
-  short_description: "Mine raw writing fragments"
-policy:
-  allow_implicit_invocation: false
+  display_name: "Escrever: ideias"
+  short_description: "Junte ideias soltas, sem estrutura ainda"

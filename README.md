@@ -26,7 +26,7 @@ claude plugin install habilidades@lucas-sachet
 | [retrospectiva](skills/retrospectiva/SKILL.md) | Revisar uma conversa e melhorar as próximas | Reescrita |
 | [montar-plano](skills/montar-plano/SKILL.md), [dividir-em-tarefas](skills/dividir-em-tarefas/SKILL.md), [mapa-do-projeto](skills/mapa-do-projeto/SKILL.md), [executar-tarefas](skills/executar-tarefas/SKILL.md) | Do plano às tarefas de um projeto | A reescrever |
 | [escrever-ideias](skills/escrever-ideias/SKILL.md), [escrever-roteiro](skills/escrever-roteiro/SKILL.md), [escrever-rascunho](skills/escrever-rascunho/SKILL.md) | Escrever um texto em três etapas | A reescrever |
-| [primeiros-passos](skills/primeiros-passos/SKILL.md) | Ajudar quem está começando a usar o Claude | A reescrever |
+| [primeiros-passos](skills/primeiros-passos/SKILL.md) | Guia para quem está começando: por onde começar e como pedir melhor | Reescrita |
 | [braco-direito](skills/braco-direito/SKILL.md) | Perseguir uma meta longa coordenando vários agentes | Em teste |
 
 ## Créditos

@@ -19,6 +19,7 @@ O usuário conhece o Claude de nome, mas não sabe tirar proveito dele. Seu trab
 
 | Quando você quer... | Use |
 | --- | --- |
+| Organizar a semana e escolher prioridades | `/planejar-semana` |
 | Testar um plano ou decisão com perguntas duras | `/questionar` |
 | Entender de novo algo que o Claude explicou mal | `/explicar-de-novo` |
 | Saber a verdade sobre um assunto (concorrente, regra, preço de mercado) | `/pesquisar` |

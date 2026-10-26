@@ -14,18 +14,31 @@ Se você está começando e não sabe por onde ir, digite `/primeiros-passos`. O
 
 ## Instalação
 
-Você precisa ter o **Claude Code** instalado. Depois, no terminal:
+Você precisa ter o **Claude Code** instalado (a extensão no VS Code ou o programa no terminal). O aplicativo de conversa do Claude, sozinho, não instala plugins.
+
+### Jeito mais simples: dentro do Claude Code
+
+Abra uma conversa no Claude Code (por exemplo, na extensão do VS Code), digite os dois comandos abaixo, um de cada vez, e aperte Enter. Não precisa de terminal nem de configurar nada:
+
+```text
+/plugin marketplace add lucas-sachet/skills
+/plugin install habilidades@lucas-sachet
+```
+
+### Pelo terminal
 
 ```bash
 claude plugin marketplace add lucas-sachet/skills
 claude plugin install habilidades@lucas-sachet
 ```
 
-Para usar, abra o Claude Code numa pasta do seu negócio e digite `/` seguido do nome da habilidade (por exemplo, `/questionar`). O Claude Code mostra a lista enquanto você digita.
+### Depois de instalar
+
+Abra uma **conversa nova** (plugins só carregam em conversas novas), numa pasta do seu negócio, e digite `/` seguido do nome da habilidade (por exemplo, `/primeiros-passos`). O Claude Code mostra a lista enquanto você digita.
 
 ### Se o terminal diz que o `claude` não é reconhecido
 
-Isso acontece quando o Claude Code está instalado, mas o computador não sabe onde ele fica (o PATH). Você não precisa consertar isso sozinho: copie o texto abaixo, cole numa conversa com o Claude (por exemplo, na extensão do Claude Code no VS Code) e envie. Ele faz a instalação por você.
+Isso acontece quando o Claude Code está instalado, mas o computador não sabe onde ele fica (o PATH). Use o jeito de dentro do Claude Code, acima, ou copie o texto abaixo e cole numa conversa do **Claude Code** (por exemplo, na extensão do VS Code), que tem acesso ao terminal do seu computador. O aplicativo de conversa comum não consegue rodar comandos no seu computador, então nele isto não funciona.
 
 ```text
 Quero instalar o plugin "Habilidades" no Claude Code, e quero que você faça tudo por mim, sem me pedir para rodar nenhum comando.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Questionar"
+  short_description: "Teste seu plano com uma rodada de perguntas por vez"

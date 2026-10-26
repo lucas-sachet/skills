@@ -1,0 +1,3 @@
+interface:
+  display_name: "Continuar depois"
+  short_description: "Resuma a conversa para continuar em outra"

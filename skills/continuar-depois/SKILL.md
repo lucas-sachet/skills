@@ -9,7 +9,7 @@ Escreva um documento de continuidade que resuma a conversa atual, para que uma c
 
 Inclua uma seção de "skills sugeridas", dizendo quais skills a próxima conversa deve usar.
 
-Não repita o que já está registrado em outros lugares (planos, documentos, e-mails, commits). Aponte para eles pelo caminho ou link.
+Não repita o que já está registrado em outros lugares (planos, documentos, e-mails). Aponte para eles pelo caminho ou link.
 
 Remova qualquer informação sensível, como senhas, chaves de acesso e dados pessoais de clientes ou funcionários.
 

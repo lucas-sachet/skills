@@ -35,6 +35,7 @@
     "./skills/primeiros-passos",
     "./skills/questionar",
     "./skills/responder-cliente",
-    "./skills/retrospectiva"
+    "./skills/retrospectiva",
+    "./skills/revisar-oferta"
   ]
 }

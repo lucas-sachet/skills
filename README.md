@@ -23,6 +23,22 @@ claude plugin install habilidades@lucas-sachet
 
 Para usar, abra o Claude Code numa pasta do seu negócio e digite `/` seguido do nome da habilidade (por exemplo, `/questionar`). O Claude Code mostra a lista enquanto você digita.
 
+### Se o terminal diz que o `claude` não é reconhecido
+
+Isso acontece quando o Claude Code está instalado, mas o computador não sabe onde ele fica (o PATH). Você não precisa consertar isso sozinho: copie o texto abaixo, cole numa conversa com o Claude (por exemplo, na extensão do Claude Code no VS Code) e envie. Ele faz a instalação por você.
+
+```text
+Quero instalar o plugin "Habilidades" no Claude Code, e quero que você faça tudo por mim, sem me pedir para rodar nenhum comando.
+
+1. Descubra se o comando `claude` funciona no terminal.
+2. Se não funcionar, procure o programa (`claude.exe`, por exemplo em `%USERPROFILE%\.local\bin` ou dentro da pasta da extensão do Claude Code no VS Code) e use o caminho completo dele.
+3. Rode `claude plugin marketplace add lucas-sachet/skills` e depois `claude plugin install habilidades@lucas-sachet`.
+4. Confirme que deu certo com `claude plugin list`.
+5. No final, explique em linguagem simples o que você fez e o que eu preciso fazer para começar a usar (por exemplo, abrir uma conversa nova e digitar /primeiros-passos).
+
+Não mude nenhuma outra configuração do meu computador. Se for preciso alterar o PATH, me pergunte antes e explique por quê.
+```
+
 > **Dica:** as habilidades salvam arquivos (planos, procedimentos, o tom de voz da empresa) na pasta onde você está. Use uma pasta por negócio ou por assunto, para os arquivos ficarem organizados e o Claude achar o que já foi combinado.
 
 ## As habilidades

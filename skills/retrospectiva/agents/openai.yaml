@@ -1,5 +1,3 @@
 interface:
-  display_name: "Retro"
-  short_description: "Conduct a retrospective on a coding session."
-policy:
-  allow_implicit_invocation: false
+  display_name: "Retrospectiva"
+  short_description: "Revise uma conversa e melhore as próximas"

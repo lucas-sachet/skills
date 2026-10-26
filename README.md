@@ -23,7 +23,7 @@ claude plugin install habilidades@lucas-sachet
 | [ensinar](skills/ensinar/SKILL.md) | Aprender um conceito novo com ajuda do Claude | Traduzida |
 | [fazer-questionario](skills/fazer-questionario/SKILL.md) | Transformar uma decisão em perguntas para outra pessoa responder | Traduzida |
 | [explicar-de-novo](skills/explicar-de-novo/SKILL.md) | "Não entendi": o Claude explica de novo, mais claro | Traduzida |
-| [retrospectiva](skills/retrospectiva/SKILL.md) | Retrospectiva do que funcionou e do que não funcionou | A reescrever |
+| [retrospectiva](skills/retrospectiva/SKILL.md) | Revisar uma conversa e melhorar as próximas | Reescrita |
 | [montar-plano](skills/montar-plano/SKILL.md), [dividir-em-tarefas](skills/dividir-em-tarefas/SKILL.md), [mapa-do-projeto](skills/mapa-do-projeto/SKILL.md), [executar-tarefas](skills/executar-tarefas/SKILL.md) | Do plano às tarefas de um projeto | A reescrever |
 | [escrever-ideias](skills/escrever-ideias/SKILL.md), [escrever-roteiro](skills/escrever-roteiro/SKILL.md), [escrever-rascunho](skills/escrever-rascunho/SKILL.md) | Escrever um texto em três etapas | A reescrever |
 | [primeiros-passos](skills/primeiros-passos/SKILL.md) | Ajudar quem está começando a usar o Claude | A reescrever |

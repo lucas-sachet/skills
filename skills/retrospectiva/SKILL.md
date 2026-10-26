@@ -1,44 +1,33 @@
 ---
 name: retrospectiva
-description: "Conduct a retrospective on a coding session."
+description: Faz uma retrospectiva de uma conversa de trabalho com o Claude e sugere melhorias para as próximas ficarem mais rápidas e certeiras. Use quando o usuário quiser revisar o que funcionou e o que não funcionou numa sessão.
 disable-model-invocation: true
 ---
 
-The user has asked for a **retrospective**. You are suggesting improvements to the coding agent's **environment** to improve future runs.
+O usuário pediu uma **retrospectiva**. Você vai sugerir melhorias no **ambiente de trabalho do Claude** (instruções, arquivos, acesso a informações e skills) para que as próximas conversas rendam mais.
 
-## Steps
+## Passos
 
-1. Call the Skill tool with `primeiros-passos` for the writing style guide.
+1. Chame a ferramenta de skills com `primeiros-passos` para ler o guia de como escrever instruções para o Claude.
 
-2. Read the primary sources for the session the user specifies. This may mean searching through session logs on this machine. If the user doesn't specify a session, default to the current one.
+2. Leia as fontes primárias da sessão que o usuário indicar. Pode ser preciso procurar nos históricos de conversa deste computador. Se o usuário não indicar, use a conversa atual.
 
-3. Look for candidates for improvement in these categories.
+3. Procure oportunidades de melhoria nestas categorias:
 
-- **Navigation**: how easy was it for the agent to find the right files? Are there hidden dependencies between files? Would a **navigation pointer** make it easier? _Use when_ the session took a long time to find a piece of information.
-- **Automated checks**: are there automated checks that could catch errors the agent made? Linting, typing, tests, filesystem linters? Read the repo's own check command first (its `package.json`/build-tool `lint`/`check` scripts, its CI workflow), so a check that already exists but sits unwired or silently broken is the finding, not a reinvention. A repo with no **guardrail** (no pre-commit hook and no CI job running its lint/typecheck/test command) is itself a finding: an un-linted repo is a standing missed opportunity, not a neutral default. _Use when_ the agent made a mistake an automated check could have caught, or the repo has no guardrail at all.
-- **Coding standards**: should the **reviewer agent** be given a new rule to enforce? Should an existing rule be removed or clarified? Classify the violation first: a **mechanical** one (a fixed syntactic pattern, a banned API, an import shape, a file-location rule) gets a deterministic check, full stop: a custom rule in the repo's own linter, a new pre-commit hook, or a new CI job, whichever the repo's language and existing guardrail make cheapest. Default to building the check over writing the rule. Reserve `CODING_STANDARDS.md` for genuine **judgement calls** (cross-file consistency, "matches the surrounding style," anything no guardrail could ever substitute for). _Use when_ the reviewer agent failed to catch a mistake.
-- **Global AGENTS.md**: are there any steering instructions that should be moved to coding standards (or automated checks) instead? _Use when_ the AGENTS.md file is particularly large - in the repo OR the user's global scope.
-- **Tool economy**: did the agent make expensive tool calls that could be streamlined? Is there any custom tooling (CLI's, MCP's) that is particularly token-inefficient? _Use when_ the agent made an expensive tool call.
-- **No-ops**: look for instructions in steering files that don't modify the agent's behavior. _Use when_ the steering files are large and unwieldy.
-- **Information access**: look for opportunities to increase the agent's access to information. Teeing dev server logs, readonly access to third-party services. _Use when_ a crucial piece of information was not available to the agent.
+- **Contexto que faltou**: o Claude precisou perguntar ou errou por não conhecer o negócio (produtos, preços, clientes, tom de voz, regras da empresa)? _Use quando_ o usuário teve que explicar a mesma coisa mais de uma vez. A solução costuma ser anotar essa informação num arquivo de instruções (`CLAUDE.md`) para o Claude ler sempre.
+- **Encontrar as coisas**: foi fácil para o Claude achar os arquivos certos (planilhas, contratos, modelos de e-mail)? Os documentos estão espalhados, com nomes confusos ou duplicados? _Use quando_ a sessão demorou para achar uma informação. Um arquivo-índice curto, apontando onde cada coisa fica, resolve muito.
+- **Conferências**: houve erros que uma checagem simples teria pego (conferir números, datas, nomes de clientes, um checklist antes de enviar)? _Use quando_ o Claude errou algo que uma regra fixa evitaria.
+- **Instruções demais ou de menos**: o arquivo de instruções está grande e cheio de regras que não mudam nada no comportamento? Há regras que deveriam virar um checklist ou uma skill? _Use quando_ o arquivo de instruções estiver longo e difícil de manter, no projeto ou no escopo global do usuário.
+- **Passos caros**: o Claude gastou muito tempo ou volume de leitura em algo que poderia ser mais direto (ler um arquivo enorme inteiro, pesquisar o mesmo assunto de novo)? _Use quando_ a sessão foi lenta ou longa sem necessidade.
+- **Acesso a informação**: faltou alguma informação importante que o Claude não conseguia alcançar (um sistema, uma planilha, um site que exige login)? _Use quando_ um dado essencial não estava disponível.
+- **Uso das skills**: existia uma skill que resolveria a tarefa e não foi usada, ou uma tarefa repetida que merece virar skill? _Use quando_ o usuário repetiu um tipo de pedido várias vezes.
 
-4. Present these candidates to the user, in order of severity.
+4. Apresente as sugestões ao usuário, da mais importante para a menos, em linguagem simples. Para cada uma, diga o que aconteceu na sessão, o que mudar e onde (qual arquivo ou skill).
 
-## Reference
+## Referência
 
-### Implementation vs Review
+### Arquivos úteis
 
-Remember that all work goes through two stages: implementation and review. The implementation agent has the most **context pressure**. They are responsible for exploration, writing code, and debugging failures.
-
-The review agent has the least context pressure - it receives a diff, so no exploration needed. It often does not need to write code or debug.
-
-This means that the review agent should be responsible for imposing coding standards, not the implementation agent.
-
-### Files
-
-You have access to several files in the repo:
-
-- `CLAUDE.md`/`AGENTS.md`: these files are pushed to the context window of any agent working in this repo. They should be used incredibly sparingly, usually only for **navigation pointers** to other files.
-- `CODING_STANDARDS.md`: this file is read during review, not implementation. Add **navigation pointers** to docs folders if the standards file gets more than 1,000 lines long.
-- Docs: use docs as references files, pointed to by other files. Look for existing docs before writing new ones.
-- Skills: use skills for docs (since their description goes into the agent's context window), or for user-invoked commands. Follow the advice in the `primeiros-passos` skill.
+- `CLAUDE.md`: lido pelo Claude no início de toda conversa naquela pasta. Use com muita economia, quase só para **ponteiros** que dizem onde achar as coisas e para regras que o Claude não adivinharia.
+- Documentos de apoio (tabela de preços, tom de voz, perguntas frequentes de clientes): guarde em arquivos próprios, apontados pelo `CLAUDE.md`. Procure um que já exista antes de criar outro.
+- Skills: use para tarefas que se repetem ou para conhecimento que só deve entrar na conversa quando necessário. Siga o conselho da skill `primeiros-passos`.

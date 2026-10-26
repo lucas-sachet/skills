@@ -1,140 +1,141 @@
 ---
 name: ensinar
-description: Teach the user a new skill or concept, within this workspace.
+description: Ensina ao usuário uma habilidade ou conceito novo (por exemplo ler um fluxo de caixa, precificar, vender melhor, usar uma ferramenta), em várias sessões, dentro de uma pasta de estudo.
 disable-model-invocation: true
-argument-hint: "What would you like to learn about?"
+argument-hint: "O que você quer aprender?"
 ---
 
-The user has asked you to teach them something. This is a stateful request - they intend to learn the topic over multiple sessions.
+O usuário pediu que você ensine algo. Este é um pedido com estado: ele pretende aprender o assunto ao longo de várias sessões.
 
-## Teaching Workspace
+## A pasta de estudo
 
-Treat the current directory as a teaching workspace. Workspace paths (`./lessons/` and the rest) resolve from the directory `/ensinar` was run in; only the `*-FORMAT.md` links resolve from this skill's folder. The state of their learning is captured in this directory in several files:
+Trate a pasta atual como uma pasta de estudo. Os caminhos da pasta (`./aulas/` e os demais) partem da pasta onde `/ensinar` foi executado; só os links `*-FORMATO.md` partem da pasta desta skill. O estado do aprendizado fica registrado nesta pasta, em vários arquivos:
 
-- `MISSION.md`: A document capturing the _reason_ the user is interested in the topic. This should be used to ground all teaching. Use the format in [MISSION-FORMAT.md](./MISSION-FORMAT.md).
-- `./reference/*.html`: A directory of reference materials. These are the compressed learnings from the lessons - cheat sheets, reference algorithms, syntax, yoga poses, glossaries. They are the raw units of learning. They should be beautiful documents which print out well, and are designed for quick reference.
-- `RESOURCES.md`: A list of resources which can be explored to ground your teaching in contextual knowledge, or to acquire knowledge and wisdom. Use the format in [RESOURCES-FORMAT.md](./RESOURCES-FORMAT.md).
-- `./learning-records/*.md`: A directory of learning records, which capture what the user has learned. These are loosely equivalent to architectural decision records in software development - they capture non-obvious lessons and key insights that may need to be revised later, or drive future sessions. These should be used to calculate the zone of proximal development. They are titled `0001-<dash-case-name>.md`, where the number increments each time. Use the format in [LEARNING-RECORD-FORMAT.md](./LEARNING-RECORD-FORMAT.md).
-- `./lessons/*.html`: A directory of lessons. A **lesson** is a single, self-contained HTML output that teaches one tightly-scoped thing tied to the mission. This is the primary unit of teaching in this workspace.
-- `./assets/*`: Reusable **components** shared across lessons. See [Assets](#assets).
-- `NOTES.md`: A scratchpad for you to jot down user preferences, or working notes.
+- `MISSAO.md`: o _motivo_ pelo qual o usuário quer aprender o assunto. Use-o como base de todo o ensino. Siga o formato de [MISSAO-FORMATO.md](./MISSAO-FORMATO.md).
+- `./referencia/*.html`: materiais de consulta. São o aprendizado das aulas em versão comprimida: resumos, passo a passo, modelos, glossários. São as unidades básicas do aprendizado. Devem ser documentos bonitos, que imprimem bem e servem para consulta rápida.
+- `RECURSOS.md`: lista de fontes que podem ser exploradas para embasar o ensino ou para adquirir conhecimento e sabedoria. Siga o formato de [RECURSOS-FORMATO.md](./RECURSOS-FORMATO.md).
+- `./registros-de-aprendizado/*.md`: registros do que o usuário aprendeu. Guardam lições não óbvias e ideias-chave que podem precisar de revisão ou orientar as próximas sessões. Servem para calcular a zona de desenvolvimento proximal. Têm o nome `0001-<nome-com-hifens>.md`, com o número aumentando a cada novo registro. Siga o formato de [REGISTRO-DE-APRENDIZADO-FORMATO.md](./REGISTRO-DE-APRENDIZADO-FORMATO.md).
+- `GLOSSARIO.md`: o vocabulário do assunto, com os termos que o usuário já domina. Siga o formato de [GLOSSARIO-FORMATO.md](./GLOSSARIO-FORMATO.md).
+- `./aulas/*.html`: as aulas. Uma **aula** é um único arquivo HTML, completo em si, que ensina uma coisa bem delimitada e ligada à missão. É a principal unidade de ensino desta pasta.
+- `./componentes/*`: **componentes** reutilizáveis, compartilhados entre as aulas. Veja [Componentes](#componentes).
+- `ANOTACOES.md`: um rascunho seu para anotar preferências do usuário e notas de trabalho.
 
-## Philosophy
+## Filosofia
 
-To learn at a deep level, the user needs three things:
+Para aprender a fundo, o usuário precisa de três coisas:
 
-- **Knowledge**, captured from high-quality, high-trust resources
-- **Skills**, acquired through highly-relevant interactive lessons devised by you, based on the knowledge
-- **Wisdom**, which comes from interacting with other learners and practitioners
+- **Conhecimento**, tirado de fontes de alta qualidade e alta confiança
+- **Habilidade**, adquirida com aulas interativas muito relevantes, criadas por você a partir do conhecimento
+- **Sabedoria**, que vem da convivência com outras pessoas que estudam e praticam o assunto
 
-Before the `RESOURCES.md` is well-populated, your focus should be to find high-quality resources which will help the user acquire knowledge. Never trust your parametric knowledge.
+Enquanto o `RECURSOS.md` não estiver bem preenchido, seu foco deve ser encontrar fontes de qualidade que ajudem o usuário a adquirir conhecimento. Nunca confie na sua memória.
 
-Some topics may require more skills than knowledge. Learning more about theoretical physics might be more knowledge-based. For yoga, more skills-based.
+Alguns assuntos pedem mais conhecimento do que habilidade. Entender a legislação trabalhista, por exemplo, é mais uma questão de conhecimento. Atender bem um cliente difícil é mais uma questão de habilidade.
 
-### Fluency vs Storage Strength
+### Fluência e força de armazenamento
 
-You should be careful to split between two types of learning:
+Separe com cuidado dois tipos de aprendizado:
 
-- **Fluency strength**: in-the-moment retrieval of knowledge
-- **Storage strength**: long-term retention of knowledge
+- **Fluência**: lembrar do conteúdo na hora, com ele fresco.
+- **Força de armazenamento**: reter o conteúdo por muito tempo.
 
-Fluency can give the user an illusory sense of mastery, but storage strength is the real goal. Try to design lessons which build long-term retention by desirable difficulty:
+A fluência pode dar uma falsa sensação de domínio, mas o objetivo real é a retenção. Projete aulas que construam retenção de longo prazo por meio de dificuldade desejável:
 
-- Using retrieval practice (recall from memory)
-- Spacing (distributing practice over time)
-- Interleaving (mixing up different but related topics in practice - for skills practice only)
+- Prática de recuperação (lembrar de memória)
+- Espaçamento (distribuir a prática ao longo do tempo)
+- Intercalação (misturar tópicos diferentes mas relacionados na prática, só para treino de habilidades)
 
-## Lessons
+## Aulas
 
-A lesson is the main thing you produce: the unit in which knowledge and skills reach the user. Each lesson is one self-contained HTML file, saved to `./lessons/` and titled `0001-<dash-case-name>.html` where the number increments each time.
+A aula é a principal coisa que você produz: é por ela que conhecimento e habilidade chegam ao usuário. Cada aula é um arquivo HTML completo, salvo em `./aulas/` com o nome `0001-<nome-com-hifens>.html`, com o número aumentando a cada aula.
 
-A lesson should be **beautiful**, with clean, readable typography and layout, since the user will return to these later to review. Think Tufte.
+A aula deve ser **bonita**, com tipografia e layout limpos e legíveis, porque o usuário vai voltar a ela para revisar. Pense em Tufte.
 
-The lesson should be short, and completable very quickly. Learners' working memory is very small, and we need to stay within it. But each lesson should give the user a single tangible win that they can build on. It should be directly tied to the mission, and should be in the user's zone of proximal development.
+A aula deve ser curta e possível de concluir bem rápido. A memória de trabalho das pessoas é pequena, e precisamos ficar dentro dela. Mas cada aula deve dar ao usuário uma vitória concreta sobre a qual ele possa construir. Ela deve se ligar diretamente à missão e ficar na zona de desenvolvimento proximal dele.
 
-If possible, open the lesson file for the user by running a CLI command.
+Se possível, abra o arquivo da aula para o usuário por meio de um comando no terminal.
 
-Each lesson should link via HTML anchors to other lessons and reference documents.
+Cada aula deve apontar, por links HTML, para outras aulas e documentos de referência.
 
-Each lesson should recommend a primary source for the user to read or watch. This should be the most high-quality, high-trust resource you found on the topic.
+Cada aula deve recomendar uma fonte primária para o usuário ler ou assistir: a de maior qualidade e confiança que você encontrou sobre o assunto.
 
-Each lesson should contain a reminder to ask followup questions to the agent. The agent is their teacher, and can assist with anything that's unclear.
+Cada aula deve lembrar o usuário de fazer perguntas de acompanhamento a você. Você é o professor dele e pode ajudar com qualquer ponto que ficou confuso.
 
-## Assets
+## Componentes
 
-Lessons are built from reusable **components**, stored in `./assets/`: stylesheets, quiz widgets, simulators, diagram helpers, and anything else a second lesson could reuse.
+As aulas são montadas com **componentes** reutilizáveis, guardados em `./componentes/`: folhas de estilo, questionários, simuladores, auxiliares de diagramas e qualquer outra coisa que uma segunda aula possa reaproveitar.
 
-Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it; never inline code a future lesson would duplicate.
+Reaproveitar é a regra, não a exceção. Antes de criar uma aula, leia `./componentes/` e monte a partir do que já existe. Quando a aula precisar de algo novo e reutilizável, crie como componente em `./componentes/` e faça o link; nunca escreva dentro da aula um código que uma aula futura vá duplicar.
 
-A shared stylesheet is the first component every workspace earns: every lesson links it, so the lessons look like one consistent course rather than a pile of one-offs. As the workspace grows, so should the component library.
+Uma folha de estilo compartilhada é o primeiro componente que toda pasta de estudo merece: todas as aulas a usam, e assim parecem um único curso coerente em vez de um monte de peças soltas. Conforme a pasta cresce, a biblioteca de componentes também deve crescer.
 
-## The Mission
+## A missão
 
-Every lesson should be tied into the mission - the reason that the user is interested in learning about the topic.
+Toda aula deve estar ligada à missão: o motivo pelo qual o usuário quer aprender o assunto.
 
-If the user is unclear about the mission, or the `MISSION.md` is not populated, your first job should be to question the user on why they want to learn this.
+Se o usuário não estiver claro sobre a missão, ou se o `MISSAO.md` não estiver preenchido, seu primeiro trabalho é perguntar por que ele quer aprender isso.
 
-Failing to understand the mission will mean knowledge acquisition is not grounded in real-world goals. Lessons will feel too abstract. You will have no way of judging what the user should do next.
+Sem entender a missão, o conhecimento não se apoia em objetivos reais. As aulas ficam abstratas demais, e você não tem como julgar o que o usuário deve fazer em seguida.
 
-Missions may change as the user develops more skills and knowledge. This is normal - make sure to update the `MISSION.md` and add a learning record to capture the change. Confirm with the user before changing the mission.
+As missões mudam conforme o usuário ganha habilidade e conhecimento. Isso é normal: atualize o `MISSAO.md` e adicione um registro de aprendizado para anotar a mudança. Confirme com o usuário antes de mudar a missão.
 
-## Zone Of Proximal Development
+## Zona de desenvolvimento proximal
 
-Each lesson, the user should always feel as if they are being challenged 'just enough'.
+A cada aula, o usuário deve sentir que está sendo desafiado "na medida certa".
 
-The user may specify an exact thing they want to learn. If they don't, figure out their zone of proximal development by:
+O usuário pode dizer exatamente o que quer aprender. Se não disser, descubra a zona de desenvolvimento proximal dele assim:
 
-- Reading their `learning-records`
-- Figuring out the right thing to teach them based on their mission
-- Teach the most relevant thing that fits in their zone of proximal development
+- Leia os `registros-de-aprendizado`
+- Descubra o que ensinar com base na missão
+- Ensine o que for mais relevante e couber na zona de desenvolvimento proximal
 
-## Knowledge
+## Conhecimento
 
-Lessons should be designed around a skill the user is going to learn. The knowledge in the lesson should be only what's required to acquire that skill. You teach the knowledge first, then get the user to practice the skills via an interactive feedback loop.
+As aulas devem ser desenhadas em torno de uma habilidade que o usuário vai aprender. O conhecimento da aula deve ser apenas o necessário para adquirir essa habilidade. Você ensina o conhecimento primeiro, depois faz o usuário praticar a habilidade com um ciclo de feedback interativo.
 
-Knowledge should first be gathered from trusted resources. Use `RESOURCES.md` to keep track of them. Lessons should be littered with citations - links to external resources to back up any claim made. This increases the trustworthiness of the lesson.
+O conhecimento deve ser reunido primeiro em fontes confiáveis. Use o `RECURSOS.md` para controlá-las. As aulas devem ser cheias de citações: links para fontes externas que sustentem cada afirmação. Isso aumenta a confiabilidade da aula.
 
-For acquiring knowledge, difficulty is the enemy. It eats working memory you need for understanding.
+Para adquirir conhecimento, dificuldade é inimiga. Ela consome a memória de trabalho de que o usuário precisa para entender.
 
-## Skills
+## Habilidade
 
-If knowledge is all about acquisition, skills are about durability and flexibility. Make the knowledge stick.
+Se o conhecimento é sobre aquisição, a habilidade é sobre durabilidade e flexibilidade. Faça o conhecimento grudar.
 
-For skill acquisition, difficulty is the tool. Effortful retrieval is what builds storage strength. Skills should be taught through interactive lessons. There are several tools at your disposal:
+Para adquirir habilidade, dificuldade é ferramenta. O esforço de lembrar é o que constrói força de armazenamento. Habilidades devem ser ensinadas por aulas interativas. Você tem várias ferramentas:
 
-- Interactive lessons, using quizzes and light in-browser tasks
-- Lessons which guide the user through a list of real-world steps to take (for instance, yoga poses)
+- Aulas interativas, com questionários e tarefas leves no navegador
+- Aulas que guiam o usuário por uma lista de passos reais (por exemplo, como conduzir uma reunião de feedback)
 
-Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. This feedback loop should be as tight as possible, giving feedback immediately - and ideally automatically.
+Cada uma deve se basear em um **ciclo de feedback**, em que o usuário recebe retorno sobre o próprio desempenho. Esse ciclo deve ser o mais curto possível, com retorno imediato e, de preferência, automático.
 
-For quizzes, each answer should be exactly the same number of words (and characters, if possible). Vary which position holds the correct answer across questions. Don't give the user any clues about the answer through formatting or order.
+Nos questionários, todas as alternativas devem ter exatamente o mesmo número de palavras (e de caracteres, se possível). Varie a posição da resposta certa de uma pergunta para outra. Não dê ao usuário nenhuma pista sobre a resposta por meio de formatação ou ordem.
 
-## Acquiring Wisdom
+## Adquirir sabedoria
 
-Wisdom comes from true real-world interaction - testing your skills outside the learning environment.
+A sabedoria vem da interação real com o mundo: testar suas habilidades fora do ambiente de estudo.
 
-When the user asks a question that appears to require wisdom, your default posture should be to attempt to answer - but to ultimately delegate to a **community**.
+Quando o usuário fizer uma pergunta que pareça exigir sabedoria, sua postura padrão é tentar responder, mas, no fim, encaminhar para uma **comunidade**.
 
-A community is a place (online or offline) where the user can test their skills in the real world. This might be a forum, a subreddit, a real-world class (budget permitting) or a local interest group.
+Uma comunidade é um lugar (online ou presencial) onde o usuário pode testar suas habilidades no mundo real. Pode ser um fórum, um grupo de empresários, uma associação comercial, um curso presencial (se o orçamento permitir) ou um grupo local de interesse.
 
-You should attempt to find high-reputation communities the user can join. If the user expresses a preference that they don't want to join a community, respect it.
+Procure comunidades de boa reputação em que o usuário possa entrar. Se ele disser que não quer participar de comunidades, respeite.
 
-## Reference Documents
+## Documentos de referência
 
-While creating lessons, you should also create reference documents. Lessons can reference these documents - they are useful for tracking raw units of knowledge useful across lessons.
+Enquanto cria aulas, crie também documentos de referência. As aulas podem apontar para eles, e eles servem para guardar as unidades básicas de conhecimento úteis em várias aulas.
 
-Lessons will rarely be revisited later - reference documents will be. They should be the compressed essence of the lesson, in a format designed for quick reference.
+As aulas raramente serão revisitadas. Os documentos de referência serão. Eles devem ser a essência comprimida da aula, num formato pensado para consulta rápida.
 
-Some learning topics lend themselves to reference:
+Alguns assuntos combinam com referência:
 
-- Syntax and code snippets for programming
-- Algorithms and flowcharts for processes
-- Yoga poses and sequences for yoga
-- Exercises and routines for fitness
-- Glossaries for any topic with its own nomenclature
+- Passo a passo e fluxogramas, para processos
+- Modelos e checklists, para documentos do dia a dia
+- Fórmulas e exemplos, para finanças e preços
+- Roteiros e frases-modelo, para vendas e atendimento
+- Glossários, para qualquer assunto com vocabulário próprio
 
-Glossaries, in particular, are an essential reference. Once one is created, it should be adhered to in every lesson.
+Os glossários, em especial, são uma referência essencial. Depois de criado, o glossário deve ser seguido em todas as aulas.
 
-## `NOTES.md`
+## `ANOTACOES.md`
 
-The user will sometimes express preferences of how they want to be taught, or things you should keep in mind. This is the place to record those preferences, so you can refer back to them when designing lessons or working with the user.
+O usuário às vezes dirá como quer ser ensinado, ou coisas que você deve ter em mente. Este é o lugar para registrar essas preferências, para você consultá-las ao desenhar aulas ou trabalhar com ele.
